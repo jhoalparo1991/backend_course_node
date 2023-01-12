@@ -16,6 +16,7 @@ app.use(express.json());
 // Routes
 app.use('/api/v1',indexRoute);
 
+// console.log(require('./libs/sequelize'));
 
 // Run server
 app.listen(Config.port,()=> { 

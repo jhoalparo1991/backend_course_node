@@ -1,8 +1,11 @@
+const {models} = require('../libs/sequelize')
+
 class User{
 
 
     async findAll(){
-        return 'Find all'
+        const users = await models.User.findAll();
+        return users
     }
 
     async findOne(id){
