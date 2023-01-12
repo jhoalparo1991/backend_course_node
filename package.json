@@ -4,7 +4,8 @@
   "description": "curso de backend con nodejs - platzi",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+   "dev":"nodemon ./src/index.js",
+   "start":"node ./src/index.js"
   },
   "keywords": [
     "nodejs",
