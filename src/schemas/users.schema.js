@@ -2,19 +2,19 @@ const Joi = require('joi');
 
 
 const id = Joi.number().min(1);
-const fullname = Joi.string().alphanum().min(5).max(50);
-const email = Joi.string().email({tlds:{allow:['com','co']}});
+const fullName = Joi.string().min(5).max(50);
+const email = Joi.string().email({tlds:{allow:['com','co','net']}});
 const password = Joi.string().alphanum();
 
 
 const createUserSchema = Joi.object({
-    fullname : fullname.required(),
+    fullName : fullName.required(),
     email : email.required(),
     password : password.required()
 })
 
 const updateUserSchema = Joi.object({
-    fullname,
+    fullName,
     email,
     password
 })

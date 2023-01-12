@@ -3,7 +3,8 @@ const express = require('express');
 const morgan = require('morgan');
 const { Config } = require('./config/config');
 const indexRoute = require('./routes/index');
-// Initialization
+const { errorHandler,logErrors, errorHandlerBoom } = require('./middlewares/error.handlers')
+ // Initialization
 const app = express();
 
 
@@ -15,6 +16,12 @@ app.use(express.json());
 
 // Routes
 app.use('/api/v1',indexRoute);
+
+
+app.use(logErrors)
+app.use(errorHandlerBoom)
+app.use(errorHandler)
+
 
 // console.log(require('./libs/sequelize'));
 
