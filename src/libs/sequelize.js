@@ -18,7 +18,4 @@ sequelize.authenticate()
 
 setupModels(sequelize);
 
-sequelize.sync();
-
-
 module.exports = sequelize;
