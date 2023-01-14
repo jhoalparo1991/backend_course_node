@@ -3,6 +3,7 @@ version: '3.1'
 services:
     postgres:
         image: 'postgres'
+        container_name: postgres
         environment:
             - POSTGRES_PASSWORD=admin123
             - POSTGRES_USER=admin
@@ -13,8 +14,28 @@ services:
             - ./postgres_data:/var/lib/postgresql/data
     pgadmin:
         image: dpage/pgadmin4
+        container_name: pgadmin
         environment:
             - PGADMIN_DEFAULT_EMAIL=root@email.com
             - PGADMIN_DEFAULT_PASSWORD=root
         ports:
             - 5050:80
+    mysql:
+        image: mysql:5
+        container_name: mysql
+        environment:
+            - MYSQL_DATABASE=my_store
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_PORT=3306
+        ports:
+            - 3306:3306
+        volumes:
+            - ./mysql_data:/var/lib/mysql
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: phpmyadmin
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - PMA_HOSTS=mysql
+        ports:
+            - 8080:80
