@@ -1,13 +1,13 @@
 'use strict';
-const { usersSchema,TABLE_NAME } = require('../models/users.models')
+const { usersSchema, USER_TABLE } = require('../models/users.models')
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface) {
-      await queryInterface.createTable(TABLE_NAME,usersSchema)
+  async up(queryInterface) {
+    await queryInterface.createTable(USER_TABLE, usersSchema)
   },
 
-  async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable(TABLE_NAME)
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable(USER_TABLE)
   }
 };

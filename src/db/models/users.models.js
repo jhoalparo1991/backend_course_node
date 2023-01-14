@@ -1,51 +1,46 @@
-const { Model,DataTypes,Sequelize } = require('sequelize');
+const { Model, DataTypes, Sequelize } = require('sequelize');
 
-const TABLE_NAME = 'users';
+const USER_TABLE = 'users';
 
 const usersSchema = {
-        id:{
-            type: DataTypes.INTEGER,
-            primaryKey : true,
-            allowNull: false,
-            autoIncrement:true
-        },
-        fullName:{
-            type: DataTypes.STRING,
-            allowNull:false,
-            field: 'fullname',
-        },
-        email:{
-            type: DataTypes.STRING,
-            allowNull:false,
-            unique:true
-        },
-        password:{
-            type: DataTypes.STRING,
-            allowNull:false,
-        },
-        role:{
-            type: DataTypes.ENUM('admin','user','client','customer'),
-            allowNull:false,
-            defaultValue:'user'
-        },
-        createdAt:{
-            type: DataTypes.DATE,
-            field: 'created_at',
-            defaultValue: DataTypes.NOW()
-        }
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        allowNull: false,
+        autoIncrement: true
+    },
+    email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true
+    },
+    password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    role: {
+        type: DataTypes.ENUM('admin', 'user', 'client', 'customer'),
+        allowNull: false,
+        defaultValue: 'user'
+    },
+    createdAt: {
+        type: DataTypes.DATE,
+        field: 'created_at',
+        defaultValue: DataTypes.NOW()
+    }
 }
 
 
 class User extends Model {
 
-    static associate(){
+    static associate() {
 
     }
 
-    static config(sequelize){
+    static config(sequelize) {
         return {
             sequelize,
-            tableName : TABLE_NAME,
+            tableName: USER_TABLE,
             modelName: 'User',
             timestamps: false
         }
@@ -56,6 +51,6 @@ class User extends Model {
 
 module.exports = {
     User,
-    TABLE_NAME,
+    USER_TABLE,
     usersSchema
 }

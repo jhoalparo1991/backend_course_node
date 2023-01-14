@@ -6,13 +6,19 @@
   "scripts": {
     "dev": "nodemon ./src/index.js",
     "start": "node ./src/index.js",
-    "migrations:gen": "sequelize-cli migration:generate --name",
-    "migrations:run": "sequelize-cli db:migrate",
+    "migration:generate": "sequelize-cli migration:generate --name",
+    "migration:run": "sequelize-cli db:migrate --to",
+    "migrate:drop-one": "sequelize-cli db:migrate:undo --to",
+    "migrate:drop-tables": "sequelize-cli db:migrate:undo:all",
+    "migrate:up": "npx sequelize-cli db:migrate",
+    "migrate:down": "npx sequelize-cli db:migrate:undo",
     "dev:dir": "mkdir postgres_data mysql_data",
     "docker:mysql": "docker-compose up -d mysql",
     "docker:phpmyadmin": "docker-compose up -d phpmyadmin",
     "docker:postgres": "docker-compose up -d postgres",
-    "docker:pgadmin": "docker-compose up -d pgadmin"
+    "docker:pgadmin": "docker-compose up -d pgadmin",
+    "docker:down": "docker-compose down",
+    "docker:up": "docker-compose up -d"
   },
   "keywords": [
     "nodejs",
