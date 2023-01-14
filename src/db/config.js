@@ -1,18 +1,18 @@
+const { Config } = require('../config/config');
+
+const dbUser = encodeURIComponent(Config.dbUser);
+const dbPassword = encodeURIComponent(Config.dbPassword);
+
+
+const URL = `${Config.dialect}://${dbUser}:${dbPassword}@${Config.dbHostname}:${Config.dbPort}/${Config.dbName}`;
 
 module.exports = {
     development: {
-        username:'root',
-        host:'localhost',
-        password:'root',
-        database:'my_store',
-        port:3306,
-        dialect : 'mysql'
+        url: URL,
+        dialect: Config.dialect
     },
     production: {
-        username:'root',
-        host:'localhost',
-        password:'root',
-        database:'my_store',
-        dialect : 'mysql'
+        url: URL,
+        dialect: Config.dialect
     }
 }

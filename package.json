@@ -7,7 +7,12 @@
     "dev": "nodemon ./src/index.js",
     "start": "node ./src/index.js",
     "migrations:gen": "sequelize-cli migration:generate --name",
-    "migrations:run": "sequelize-cli db:migrate"
+    "migrations:run": "sequelize-cli db:migrate",
+    "dev:dir": "mkdir postgres_data mysql_data",
+    "docker:mysql": "docker-compose up -d mysql",
+    "docker:phpmyadmin": "docker-compose up -d phpmyadmin",
+    "docker:postgres": "docker-compose up -d postgres",
+    "docker:pgadmin": "docker-compose up -d pgadmin"
   },
   "keywords": [
     "nodejs",
