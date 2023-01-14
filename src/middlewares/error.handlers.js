@@ -2,12 +2,16 @@ const Boom = require('@hapi/boom');
 const { ValidationError } = require('sequelize');
 
 function logErrors(err, req, res, next) {
-    next(err)
+    if (err) {
+        next(err)
+    } else {
+        next()
+    }
 }
 
 function errorHandler(err, req, res, next) {
 
-    res.status(500).json({
+    res.status(400).json({
         message: err.message,
         stack: err.stack
     })
