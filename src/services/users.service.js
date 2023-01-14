@@ -1,45 +1,44 @@
-const {models} = require('../libs/sequelize')
+const { models } = require('../libs/sequelize')
 const boom = require('@hapi/boom');
 
-class User{
+class User {
 
 
-    async findAll(){
+    async findAll() {
         const users = await models.User.findAll();
         return users
     }
 
-    async findOne(id){
+    async findOne(id) {
         const result = await models.User.findByPk(id);
-        if(!result){
+        if (!result) {
             throw boom.notFound('User not found');
         }
         return result;
     }
 
-    async createUser(data){
+    async createUser(data) {
         const newUser = await models.User.create(data)
         return newUser;
     }
 
-    async updateUser(id,data){
+    async updateUser(id, data) {
         const user = await this.findOne(id);
-        if(!user){
+        if (!user) {
             throw boom.notFound('User not found');
         }
-
-        const rs = await models.User.update(id,data);
+        const rs = await user.update(id, data);
 
         return rs;
     }
 
-    async deleteUser(id){
+    async deleteUser(id) {
         const user = await this.findOne(id);
-        if(!user){
+        if (!user) {
             throw boom.notFound('User not found');
         }
 
-        await models.User.destroy(id)
+        await user.destroy(id)
 
         return id;
     }

@@ -1,29 +1,26 @@
 const Boom = require('@hapi/boom');
 const { ValidationError } = require('sequelize');
 
-function logErrors(err,req,res,next){
-    console.log('Log errors');
+function logErrors(err, req, res, next) {
     next(err)
 }
 
-function errorHandler(err,req,res,next){
-    console.log('Handle errors');
+function errorHandler(err, req, res, next) {
 
     res.status(500).json({
-        message : err.message,
-        stack : err.stack
+        message: err.message,
+        stack: err.stack
     })
 
 
 }
 
-function errorHandlerBoom(err,req,res,next){
-    console.log('Handle errors Boom');
+function errorHandlerBoom(err, req, res, next) {
 
-    if(err.isBoom){
+    if (err.isBoom) {
         const { output } = err
         res.status(output.statusCode).json({
-            message : output.payload
+            message: output.payload
         })
     }
 
@@ -32,11 +29,11 @@ function errorHandlerBoom(err,req,res,next){
 
 }
 
-function errorValidator(err,req,res,next){
-    if(err instanceof ValidationError){
+function errorValidator(err, req, res, next) {
+    if (err instanceof ValidationError) {
         return res.status(400).json({
-            message : err.message,
-            error : err.errors
+            message: err.message,
+            error: err.errors
         })
     }
     next()
