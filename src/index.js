@@ -3,7 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 const { Config } = require('./config/config');
 const indexRoute = require('./routes/index');
-const { errorHandler,logErrors, errorHandlerBoom } = require('./middlewares/error.handlers')
+const { errorHandler,logErrors, errorHandlerBoom, errorValidator } = require('./middlewares/error.handlers')
  // Initialization
 const app = express();
 
@@ -19,6 +19,7 @@ app.use('/api/v1',indexRoute);
 
 
 app.use(logErrors)
+app.use(errorValidator)
 app.use(errorHandlerBoom)
 app.use(errorHandler)
 

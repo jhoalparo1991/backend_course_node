@@ -7,12 +7,22 @@ const router = Router();
 const service = new User();
 
 
-router.get('/',async (req,res)=>{
+router.get('/',async (req,res,next)=>{
     try {
         const data = await service.findAll();
         return res.status(200).json({data})
     } catch (error) {
-        console.log(error);
+        next(error);
+    }
+})
+
+router.get('/:id',async (req,res,next)=>{
+    try {
+        const { id } = req.params
+        const data = await service.findOne(id)
+        return res.status(200).json({data})
+    } catch (error) {
+        next(error);
     }
 })
 
@@ -28,6 +38,8 @@ router.post('/',validatorHandler( createUserSchema,'body'),async(req,res,next)=>
         next(error)
     }
 });
+
+
 
 
 module.exports = router;
