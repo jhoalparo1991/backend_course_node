@@ -23,6 +23,11 @@ const usersSchema = {
             type: DataTypes.STRING,
             allowNull:false,
         },
+        role:{
+            type: DataTypes.ENUM('admin','user','client','customer'),
+            allowNull:false,
+            defaultValue:'user'
+        },
         createdAt:{
             type: DataTypes.DATE,
             field: 'created_at',
