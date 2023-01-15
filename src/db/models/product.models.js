@@ -47,17 +47,14 @@ const ProductSchema = {
 class Product extends Model{
 
     static associate(models){
-        this.hasMany(models.Category,{
-            as: 'Category',
-            foreignKey: 'categoryId'
-        })
+        this.belongsTo(models.Category,{as:'Category'})
     }
 
     static config(sequelize){
         return {
             sequelize,
             tableName : PRODUCT_TABLE,
-            timestamps:true,
+            timestamps:false,
             modelName:'Product'
         }
     }

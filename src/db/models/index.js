@@ -5,13 +5,15 @@ const { ProductSchema,Product } = require('./product.models')
 
 
 function setupModels(sequelize) {
-    User.init(usersSchema, User.config(sequelize))
-    Category.init(CategorySchema,Category.config(sequelize))
-        .associate(sequelize.models);
-    Product.init(ProductSchema,Product.config(sequelize))
-        .associate(sequelize.models);
-    // Customer.init(customerSchema, Customer.config(sequelize))
-    // Customer.associate(sequelize.models)
+ 
+    User.init(usersSchema, User.config(sequelize));
+ 
+    Category.init(CategorySchema,Category.config(sequelize));
+    Product.init(ProductSchema,Product.config(sequelize));
+ 
+    Category.associate(sequelize.models);
+    Product.associate(sequelize.models);
+ 
 }
 
 
