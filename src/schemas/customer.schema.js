@@ -19,7 +19,14 @@ const customerCreate = Joi.object({
     })
 })
 
+const customerUpdate = Joi.object({
+    name,
+    lastName,
+    phone
+})
+
 
 module.exports = {
-    customerCreate
+    customerCreate,
+    customerUpdate
 }

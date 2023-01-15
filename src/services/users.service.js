@@ -27,7 +27,7 @@ class User {
         if (!user) {
             throw boom.notFound('User not found');
         }
-        const rs = await user.update(id, data);
+        const rs = await user.update( data);
 
         return rs;
     }

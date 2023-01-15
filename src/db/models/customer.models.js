@@ -42,7 +42,7 @@ class Customer extends Model {
     static associate(models) {
 
         this.belongsTo(models.User, {
-            as: 'users'
+            as: 'user'
         })
     }
 
