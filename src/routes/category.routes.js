@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const validatorHandler = require('../middlewares/error.validators');
+const { createCategory,updateCategory,idCategory } = require('../schemas/category.schema')
 
 
 const CategoryService = require('../services/category.service');
@@ -19,7 +20,7 @@ router.get('/',async(req,res,next)=>{
         next(error)
     }
 })
-router.get('/:id',async(req,res,next)=>{
+router.get('/:id',validatorHandler(idCategory,'params'),async(req,res,next)=>{
     try {
         const { id } = req.params;
 
@@ -32,7 +33,7 @@ router.get('/:id',async(req,res,next)=>{
     }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', validatorHandler(createCategory,'body'),async (req, res, next) => {
     try {
         const data = req.body
 
@@ -45,7 +46,10 @@ router.post('/', async (req, res, next) => {
     }
 });
 
-router.patch('/:id', async (req, res, next) => {
+router.patch('/:id',
+validatorHandler(idCategory,'params'),
+validatorHandler(updateCategory,'body'),
+async (req, res, next) => {
     try {
         const data = req.body
         const { id } = req.params;
@@ -59,7 +63,8 @@ router.patch('/:id', async (req, res, next) => {
     }
 });
 
-router.delete('/:id',  async (req, res, next) => {
+router.delete('/:id', 
+validatorHandler(idCategory,'params'), async (req, res, next) => {
     try {
         const { id } = req.params;
 

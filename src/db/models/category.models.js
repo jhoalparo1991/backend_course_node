@@ -28,7 +28,6 @@ const CategorySchema = {
 class Category extends Model{
     
     static associate(models){
-        console.log('MODEL PRODUCT -> ', models);
         this.hasMany(models.Product,{
             as: 'product',
             foreignKey: 'categoryId',
