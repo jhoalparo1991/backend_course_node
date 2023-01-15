@@ -4,26 +4,20 @@ const boom = require('@hapi/boom')
 class CategoryService {
 
     async findAll(){
-        const result =  await Category.findAll({
-            include:['product']
-        });
+        const result =  await Category.findAll();
 
         return result;
     }
 
     async createCategory(data) {
 
-        const newCategory = await Category.create(data,{
-            include:['Product']
-        });
+        const newCategory = await Category.create(data);
 
         return newCategory;
     }
 
     async findOne(id){
-        const category = await Category.findByPk(id,{
-            include : ['Product']
-        });
+        const category = await Category.findByPk(id);
         if(!category){
             throw boom.notFound('Category not found');            
         }

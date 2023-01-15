@@ -36,7 +36,7 @@ router.post('/', async (req, res, next) => {
     try {
         const data = req.body
 
-        const result = await category.createcategory(data);
+        const result = await category.createCategory(data);
         res.json({
             result
         })
