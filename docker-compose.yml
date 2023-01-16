@@ -7,7 +7,7 @@ services:
         environment:
             - POSTGRES_PASSWORD=admin123
             - POSTGRES_USER=admin
-            - POSTGRES_DB=my_store
+            - POSTGRES_DB=eccommerce
         ports:
             - 5432:5432
         volumes:
@@ -24,7 +24,7 @@ services:
         image: mysql:5
         container_name: mysql
         environment:
-            - MYSQL_DATABASE=my_store
+            - MYSQL_DATABASE=eccommerce
             - MYSQL_ROOT_PASSWORD=root
             - MYSQL_PORT=3306
         ports:
