@@ -13,6 +13,8 @@
     "migrations:up": "npx sequelize-cli db:migrate",
     "migrations:down": "npx sequelize-cli db:migrate:undo",
     "migrations:down:all": "npx sequelize-cli db:migrate:undo:all",
+    "seeders:generate":"sequelize-cli seed:generate --name",
+    "seeders:run":"sequelize-cli db:seed:all",
     "dev:dir": "mkdir postgres_data mysql_data",
     "docker:mysql": "docker-compose up -d mysql",
     "docker:phpmyadmin": "docker-compose up -d phpmyadmin",
