@@ -1,5 +1,6 @@
 const { Customer } = require('../db/models/customer.models');
 const boom = require('@hapi/boom')
+const bcrypt = require('bcrypt');
 
 class CustomerService {
 
@@ -11,9 +12,34 @@ class CustomerService {
         return result;
     }
 
+    async findByEmail(email){
+        const user = await Customer.findOne({
+            where:{
+                email
+            }
+        })
+
+        if(!user){
+            throw boom.badRequest("Error in request");
+        }
+
+        return user;
+    }
+
     async createCustomer(data) {
 
-        const newCustomer = await Customer.create(data,{
+        const { password } = data.user;
+        const passwordHash = await bcrypt.hash(password,10);
+
+        const dataResult = {
+            ...data,
+            user:{
+                email: data.user.email,
+                password:passwordHash
+            }
+        }
+
+        const newCustomer = await Customer.create(dataResult,{
             include:['user']
         });
 

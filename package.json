@@ -13,9 +13,9 @@
     "migrations:up": "npx sequelize-cli db:migrate",
     "migrations:down": "npx sequelize-cli db:migrate:undo",
     "migrations:down:all": "npx sequelize-cli db:migrate:undo:all",
-    "seeders:generate":"sequelize-cli seed:generate --name",
-    "seeders:run":"sequelize-cli db:seed:all",
-    "seeders:delete":"sequelize-cli db:seed:undo:all",
+    "seeders:generate": "sequelize-cli seed:generate --name",
+    "seeders:run": "sequelize-cli db:seed:all",
+    "seeders:delete": "sequelize-cli db:seed:undo:all",
     "dev:dir": "mkdir postgres_data mysql_data",
     "docker:mysql": "docker-compose up -d mysql",
     "docker:phpmyadmin": "docker-compose up -d phpmyadmin",
@@ -23,8 +23,8 @@
     "docker:pgadmin": "docker-compose up -d pgadmin",
     "docker:down": "docker-compose down",
     "docker:up": "docker-compose up -d",
-    "docker:mysql:run":"docker-compose up -d mysql & docker-compose up -d phpmyadmin",
-    "docker:postgres:run":"docker-compose up -d postgres & docker-compose up -d pgadmin"
+    "docker:mysql:run": "docker-compose up -d mysql & docker-compose up -d phpmyadmin",
+    "docker:postgres:run": "docker-compose up -d postgres & docker-compose up -d pgadmin"
   },
   "keywords": [
     "nodejs",
@@ -39,11 +39,14 @@
   "license": "MIT",
   "dependencies": {
     "@hapi/boom": "^10.0.0",
+    "bcrypt": "^5.1.0",
     "dotenv": "^16.0.3",
     "errorhandler": "^1.5.1",
     "express": "^4.18.2",
     "joi": "^17.7.0",
     "mysql2": "^3.0.1",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
     "pg": "^8.8.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.28.0",

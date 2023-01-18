@@ -12,7 +12,7 @@ function logErrors(err, req, res, next) {
 function errorHandler(err, req, res, next) {
   res.status(400).json({
     message: err.message,
-    // stack: err.stack
+    stack: err.stack
   });
 }
 

@@ -26,7 +26,7 @@ const usersSchema = {
     createdAt: {
         type: DataTypes.DATE,
         field: 'created_at',
-        defaultValue: DataTypes.NOW()
+        defaultValue: DataTypes.NOW
     }
 }
 
