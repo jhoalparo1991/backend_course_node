@@ -12,6 +12,7 @@ const Config = {
 
   dialect: process.env.DB_DIALECT,
   dbUrl: process.env.DATABASE_URL,
+  secretJwt: process.env.SECRET_JWT,
 };
 
 module.exports = {

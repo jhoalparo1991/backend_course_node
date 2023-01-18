@@ -1,14 +1,27 @@
-const { Router } = require('express');
-const passport = require('passport')
+const { Router } = require("express");
+const { tokens } = require("../libs/jwt");
+
+const passport = require("passport");
 
 const router = Router();
 
-router.post('/login',passport.authenticate('local'),async(req,res,next)=>{
+router.post(
+  "/login",
+  passport.authenticate("local", { session: false }),
+  async (req, res, next) => {
     try {
-        res.send('Auth')
+      const user = req.user;
+
+      const token = tokens(user);
+
+      res.json({
+        user,
+        token,
+      });
     } catch (error) {
-        next(error)
+      next(error);
     }
-})
+  }
+);
 
 module.exports = router;
