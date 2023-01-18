@@ -18,6 +18,20 @@ class User {
         return result;
     }
 
+    async findByEmail(email){
+        const user = await models.User.findOne({
+            where:{
+                email
+            }
+        })
+
+        if(!user){
+            throw boom.badRequest("Error in request");
+        }
+
+        return user;
+    }
+
     async createUser(data) {
         const salt = 10;
         const hash = await bcrypt.hash(data.password,salt);

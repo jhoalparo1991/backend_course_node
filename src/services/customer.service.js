@@ -12,19 +12,7 @@ class CustomerService {
         return result;
     }
 
-    async findByEmail(email){
-        const user = await Customer.findOne({
-            where:{
-                email
-            }
-        })
-
-        if(!user){
-            throw boom.badRequest("Error in request");
-        }
-
-        return user;
-    }
+ 
 
     async createCustomer(data) {
 

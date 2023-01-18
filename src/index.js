@@ -15,6 +15,8 @@ const app = express();
 app.use(morgan('dev'));
 app.use(express.json());
 
+
+require('./utils/auth/')
 // Routes
 app.use('/api/v1', indexRoute);
 

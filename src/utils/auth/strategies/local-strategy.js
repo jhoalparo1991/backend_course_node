@@ -1,7 +1,7 @@
 const boom = require('@hapi/boom');
 const { Strategy } = require('passport-local');
-const CustomerService = require('../../../services/customer.service');
-const service = CustomerService();
+const UserService = require('../../../services/users.service');
+const service = new UserService();
 
 const localStrategy = new Strategy(async(email,password,done)=>{
    try {
@@ -10,7 +10,7 @@ const localStrategy = new Strategy(async(email,password,done)=>{
     if(!user){
         done(boom.unauthorized(),false);
     }
-
+    console.log('Local');
    } catch (error) {
     done(error,false)
    }
