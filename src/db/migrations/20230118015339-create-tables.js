@@ -1,7 +1,7 @@
 "use strict";
 const { CATEGORY_TABLE } = require("../models/category.models");
 const { PRODUCT_TABLE } = require("../models/product.models");
-const { USER_TABLE } = require('../models/users.models')
+const { USER_TABLE } = require("../models/users.models");
 const { CUSTOMER_TABLE } = require("../models/customer.models");
 const { ORDER_TABLE } = require("../models/order.models");
 const { ORDER_PRODUCT_TABLE } = require("../models/orders-products.models");
@@ -71,37 +71,35 @@ module.exports = {
         },
       },
     });
-    await queryInterface.createTable(USER_TABLE, 
-      {
-        id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            allowNull: false,
-            autoIncrement: true
-        },
-        email: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true
-        },
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        role: {
-          field: "role",
-          type: DataTypes.ENUM("admin", "user","customer"),
-          allowNull: false,
-          defaultValue: "user",
-        },
-        createdAt: {
-            type: DataTypes.DATE,
-            field: 'created_at',
-            defaultValue: DataTypes.NOW,
-            field:'created_at'
-        }
-        }
-    )
+    await queryInterface.createTable(USER_TABLE, {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        allowNull: false,
+        autoIncrement: true,
+      },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      role: {
+        field: "role",
+        type: DataTypes.ENUM("admin", "user", "seller", "customer"),
+        allowNull: false,
+        defaultValue: "user",
+      },
+      createdAt: {
+        type: DataTypes.DATE,
+        field: "created_at",
+        defaultValue: DataTypes.NOW,
+        field: "created_at",
+      },
+    });
     await queryInterface.createTable(CUSTOMER_TABLE, {
       id: {
         type: DataTypes.INTEGER,
@@ -129,11 +127,11 @@ module.exports = {
         },
       },
       createdAt: {
-        field:'created_at',
+        field: "created_at",
         type: DataTypes.DATE,
         allowNull: false,
         defaultValue: DataTypes.NOW,
-      }
+      },
     });
     await queryInterface.createTable(ORDER_TABLE, {
       id: {
@@ -185,7 +183,7 @@ module.exports = {
         type: DataTypes.DECIMAL(2),
         allowNull: false,
         defaultValue: 1,
-      }
+      },
     });
   },
 
@@ -196,6 +194,5 @@ module.exports = {
     await queryInterface.dropTable(CUSTOMER_TABLE);
     await queryInterface.dropTable(ORDER_TABLE);
     await queryInterface.dropTable(ORDER_PRODUCT_TABLE);
-
   },
 };

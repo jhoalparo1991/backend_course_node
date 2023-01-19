@@ -12,6 +12,11 @@ const tokens = (data) => {
   return token;
 };
 
+const verifyToken = (token) => {
+  return jwt.verify(token, Config.secretJwt);
+};
+
 module.exports = {
   tokens,
+  verifyToken,
 };

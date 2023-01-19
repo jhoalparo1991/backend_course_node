@@ -19,18 +19,17 @@ const OrderSchema = {
       key: "id",
     },
   },
-  total: {
-    type: DataTypes.VIRTUAL,
-    get: function () {
-      if (this.items.length > 0) {
-        return this.items.reduce((total, item) => {
-          return total + item.price * item.OrderProducts.amount;
-        }, 0);
-      }
-      console.log("CERO");
-      return 0;
-    },
-  },
+  // total: {
+  //   type: DataTypes.VIRTUAL,
+  //   get: function () {
+  //     if (this.items.length > 0) {
+  //       return this.items.reduce((total, item) => {
+  //         return total + item.price * item.OrderProducts.amount;
+  //       }, 0);
+  //     }
+  //     return 0;
+  //   },
+  // },
   createdAt: {
     type: DataTypes.DATE,
     defaultValue: Sequelize.NOW,

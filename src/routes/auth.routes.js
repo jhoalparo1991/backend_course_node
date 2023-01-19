@@ -15,7 +15,6 @@ router.post(
       const token = tokens(user);
 
       res.json({
-        user,
         token,
       });
     } catch (error) {

@@ -1,6 +1,8 @@
 const { Router } = require("express");
 const OrderService = require("../services/order.service");
 const validatorHandle = require("../middlewares/error.validators");
+const passport = require("passport");
+
 const {
   createOrderSchema,
   idOrderSchema,
@@ -11,10 +13,13 @@ const orderService = new OrderService();
 
 router.post(
   "/",
-  validatorHandle(createOrderSchema, "body"),
+  passport.authenticate("jwt", { session: false }),
   async (req, res, next) => {
     try {
       const data = req.body;
+
+      data.user = req.user.data;
+
       const order = await orderService.createOrder(data);
       return res.status(201).json({
         message: "Your order was created successfully",
@@ -28,6 +33,7 @@ router.post(
 
 router.post(
   "/add-item",
+  passport.authenticate("jwt", { session: false }),
   validatorHandle(addItemsOrder, "body"),
   async (req, res, next) => {
     try {
@@ -41,9 +47,24 @@ router.post(
     }
   }
 );
+router.get(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res, next) => {
+    try {
+      const { data } = req.user;
+      const { id, role } = data;
+      await orderService.findAll(id);
+      return res.status(200).json({ id, role });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 router.get(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
   validatorHandle(idOrderSchema, "params"),
   async (req, res, next) => {
     try {
